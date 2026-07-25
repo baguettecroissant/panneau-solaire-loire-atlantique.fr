@@ -1,0 +1,4 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';import { guides } from '../../data/guides';
+---
+<BaseLayout title="Guides panneaux solaires Loire-Atlantique — Nantes 44" description="Guides solaires Loire-Atlantique : prix, aides, autoconsommation, PAC, ardoise, batterie et installateur RGE."><section class="section"><div class="container"><h1>Guides solaires Loire-Atlantique</h1><div class="grid cards">{guides.map(g=><a class="card" href={`/guides/${g.slug}/`}><h3>{g.shortTitle}</h3><p>{g.description}</p></a>)}</div></div></section></BaseLayout>

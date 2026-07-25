@@ -1,0 +1,4 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';import { communes } from '../data/site';
+---
+<BaseLayout title="Communes Loire-Atlantique couvertes — Panneaux solaires 44" description="Toutes les communes de Loire-Atlantique couvertes pour panneaux solaires, installateur RGE, prix et devis local."><section class="section"><div class="container"><span class="eyebrow">Loire-Atlantique</span><h1>Communes couvertes dans le 44</h1><div class="city-grid">{communes.map(c=><a class="city" href={`/panneau-solaire-${c.slug}/`}><h3>{c.name}</h3><p>{c.postalCodes.join(', ')} · {c.population.toLocaleString('fr-FR')} habitants</p></a>)}</div></div></section></BaseLayout>
