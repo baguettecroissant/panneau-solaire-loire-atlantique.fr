@@ -7,7 +7,7 @@ const VUD_PING_URL='https://www.viteundevis.com/api/ping.php';
 const VUD_LEAD_URL='https://www.viteundevis.com/api/get.php';
 const MAX_BODY_BYTES=16384;
 const json=(body,status=200,origin='')=>new Response(JSON.stringify(body),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','Access-Control-Allow-Origin':origin||`https://${SITE_DOMAIN}`,'Access-Control-Allow-Methods':'POST, OPTIONS','Access-Control-Allow-Headers':'Content-Type',Vary:'Origin'}});
-const allowed=(origin,env)=>origin===`https://${SITE_DOMAIN}`||origin===`https://www.${SITE_DOMAIN}`||(env?.ALLOW_LOCAL_ORIGIN==='true'&&/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin));
+const allowed=(origin,env)=>origin===`https://${SITE_DOMAIN}`||origin===`https://www.${SITE_DOMAIN}`||origin==='https://panneau-solaire-loire-atlantique-fr.pages.dev'||(env?.ALLOW_LOCAL_ORIGIN==='true'&&/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin));
 const phone=(v='')=>{let d=String(v).replace(/\D/g,''); if(d.startsWith('0033'))d='0'+d.slice(4); if(d.startsWith('33')&&d.length===11)d='0'+d.slice(2); return /^0[1-9]\d{8}$/.test(d)?d:null};
 const sbHeaders=(env)=>{const key=env.SUPABASE_SERVICE_ROLE_KEY||env.SUPABASE_ANON_KEY;return {'Content-Type':'application/json',apikey:key,Authorization:`Bearer ${key}`}};
 const withTimeout=async(url,opt,fetcher)=>{const c=new AbortController();const t=setTimeout(()=>c.abort(),10000);try{return await fetcher(url,{...opt,signal:c.signal})}finally{clearTimeout(t)}};
