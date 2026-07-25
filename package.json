@@ -11,7 +11,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "test": "node --test",
-    "audit:site": "node scripts/audit-site.mjs"
+    "audit:site": "node scripts/audit-site.mjs",
+    "data:cities": "node scripts/fetch-cities.mjs",
+    "data:content": "node scripts/generate-local-content.mjs"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^13.7.0",

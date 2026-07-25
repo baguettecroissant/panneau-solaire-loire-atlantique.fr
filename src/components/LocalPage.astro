@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LeadForm from './LeadForm.astro';
+import SolarCalculator from './SolarCalculator.astro';
+import { cityBlocks, localMetrics, communes } from '../data/site';
+const { commune, index, kind = 'solaire' } = Astro.props;
+const blocks = cityBlocks(commune, index);
+const m = localMetrics(commune, index);
+const nearby = communes.filter((_, i) => i !== index).sort((a, b) => Math.abs(a.population - commune.population) - Math.abs(b.population - commune.population)).slice(0, 5);
+const h1 = kind === 'installateur'
+  ? `Installateur Solaire RGE à ${commune.name} (${commune.postalCodes[0]}) — Expert Loire-Atlantique`
+  : `Panneaux Solaires à ${commune.name} (${commune.postalCodes[0]}) — Expert RGE Loire-Atlantique`;
+const description = `${commune.name} : panneaux solaires, prix 3 à 9 kWc, production locale ${m.yieldPerKwc} kWh/kWc/an, aides 2026 et devis QualiPV RGE gratuit.`;
+const schema = {
+  '@context':'https://schema.org','@type':'Service',name:h1,areaServed:{'@type':'City',name:commune.name},
+  provider:{'@type':'Organization',name:'Panneau Solaire Loire-Atlantique'},serviceType:'Étude photovoltaïque et mise en relation RGE'
+};
+---
+<BaseLayout title={h1} description={description} schema={schema}>
+  <section class="local-hero rich-local-hero">
+    <div class="container local-hero-grid">
+      <div class="local-hero-copy">
+        <nav class="crumb"><a href="/">Accueil</a><span>›</span><a href="/communes/">Communes</a><span>›</span>{commune.name}</nav>
+        <div class="local-badges"><span>📍 Loire-Atlantique · 44</span><span>✓ Étude gratuite</span><span>RGE QualiPV</span></div>
+        <h1>{h1}</h1>
+        <p class="lead local-intro">Vous souhaitez installer des panneaux solaires à {commune.name} en Loire-Atlantique ? {blocks.intro} Les experts RGE du 44 étudient votre installation entre 7 500 € et 22 000 € TTC, avec simulation de rentabilité gratuite.</p>
+        <div class="hero-actions"><a class="btn" href="#devis">Vérifier ma rentabilité à {commune.name}</a><a class="ghost-link" href="#simulateur">Simuler ma production ↓</a></div>
+        <div class="local-trust"><span><b>{m.yieldPerKwc}</b> kWh/kWc/an</span><span><b>{m.sixKwc.toLocaleString('fr-FR')}</b> kWh/an en 6 kWc</span><span><b>9–12 ans</b> ROI indicatif</span></div>
+      </div>
+      <div class="local-hero-media">
+        <img src="/images/hero-panneau-solaire-loire-atlantique.webp" alt={`Maison avec panneaux solaires près de ${commune.name}`} width="1920" height="1278"/>
+        <div class="floating-production"><i>☀️</i><div><small>Production aujourd’hui</small><strong>{(m.sixKwc / 365 * 1.45).toFixed(1).replace('.', ',')} kWh</strong></div><span>+ propre</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-strip local-strip"><div class="container"><span>✓ Module N-type 22%</span><span>✓ Surimposition ardoise</span><span>✓ Micro-onduleur Enphase IQ8</span><span>✓ Garantie linéaire 30 ans</span></div></section>
+
+  <section class="section" id="simulateur"><div class="container"><div class="section-head split"><div><span class="kicker">4 outils gratuits</span><h2>Votre projet solaire à {commune.name}, chiffré sans idée reçue.</h2></div><p>Production, ROI, PAC + solaire et Carte solaire du 44 : explorez les principaux paramètres avant de demander une étude de toiture.</p></div><SolarCalculator city={commune.name} yieldPerKwc={m.yieldPerKwc} local={true}/></div></section>
+
+  <section class="section soft-section"><div class="container editorial-grid">
+    <div class="editorial-image"><img src="/images/guides/toiture-ardoise.webp" alt={`Toiture adaptée aux panneaux photovoltaïques à ${commune.name}`} loading="lazy" width="1400" height="932"/><span>{commune.postalCodes[0]} · analyse locale</span></div>
+    <article class="editorial-copy"><span class="kicker">Toiture & habitat</span><h2>Ce qui change réellement à {commune.name}</h2><p>{m.localAngle}</p><p>{m.roofType}</p><p>Pour une {commune.profile}, le calepinage doit préserver les rives, les noues, les sorties de toiture et l’accès d’entretien. Sur ardoise, la surimposition évite une intégration lourde et assure une ventilation naturelle des modules monocristallins N-type.</p><ul class="premium-list"><li>Relevé des ombres à différentes saisons</li><li>Vérification du tableau électrique et de la terre</li><li>Simulation 3, 6 et 9 kWc avec le même profil de consommation</li><li>Option onduleur hybride ou micro-onduleurs selon les pans</li></ul></article>
+  </div></section>
+
+  <section class="section"><div class="container"><div class="section-head"><span class="kicker">Démarches & aides</span><h2>Un parcours clair, de l’urbanisme au raccordement Enedis.</h2><p class="local-advice">{blocks.advice}</p></div><div class="timeline-grid"><article><span>01</span><h3>Pré-étude</h3><p>Factures, profil horaire, toiture, masques et futurs usages sont rapprochés.</p></article><article><span>02</span><h3>Urbanisme</h3><p>Déclaration préalable à la mairie de {commune.name}, avec vigilance ABF si le bien est protégé.</p></article><article><span>03</span><h3>Pose RGE</h3><p>Surimposition, protections électriques, micro-onduleurs ou onduleur hybride.</p></article><article><span>04</span><h3>Enedis & EDF OA</h3><p>Raccordement, Consuel lorsque requis, puis contrat de vente du surplus.</p></article></div><div class="info-banner"><strong>À vérifier en 2026</strong><span>Prime à l’autoconsommation, TVA applicable, tarifs EDF OA et éventuels dispositifs Nantes Métropole / Pays de la Loire évoluent. Exigez des montants datés.</span></div></div></section>
+
+  <section class="section dark-section"><div class="container heritage-grid"><article><span class="kicker dark-kicker">Patrimoine & innovation</span><h2>De la Loire aux Machines de l’Île : produire localement.</h2><p class="local-heritage">{blocks.heritage}</p><p>Comme les Machines de l’Île rendent visible une ingénierie complexe, une bonne installation solaire doit rendre ses performances lisibles : application propriétaire, production par panneau, alertes et bilan mensuel.</p><a class="text-link light" href="/guide-solaire-grand-ouest/">Lire le guide solaire Grand Ouest →</a></article><div class="heritage-numbers"><div><strong>1 800 h</strong><span>de soleil par an</span></div><div><strong>22%</strong><span>rendement module N-type</span></div><div><strong>30 ans</strong><span>garantie linéaire</span></div><div><strong>20 ans</strong><span>contrat EDF OA indicatif</span></div></div></div></section>
+
+  <section class="section"><div class="container"><div class="section-head split"><div><span class="kicker">Prix à {commune.name}</span><h2>Choisir la puissance sur les usages, pas sur la surface disponible.</h2></div><p class="local-market">{blocks.market}</p></div><div class="pricing-grid"><article><span>8 modules</span><h3>3 kWc</h3><strong>7 500–10 000 €</strong><p>Maison sobre, talon électrique et quelques usages de journée.</p><ul><li>≈ {(m.yieldPerKwc*3).toLocaleString('fr-FR')} kWh/an</li><li>Surplus EDF OA</li><li>Monitoring inclus</li></ul></article><article class="popular"><em>Le plus choisi</em><span>16 modules</span><h3>6 kWc</h3><strong>12 500–16 500 €</strong><p>Maison familiale, PAC, télétravail ou véhicule électrique.</p><ul><li>≈ {m.sixKwc.toLocaleString('fr-FR')} kWh/an</li><li>Pilotage PAC / ballon</li><li>Batterie compatible</li></ul></article><article><span>24 modules</span><h3>9 kWc</h3><strong>16 500–22 000 €</strong><p>Grande maison fortement électrifiée ou projet évolutif.</p><ul><li>≈ {m.nineKwc.toLocaleString('fr-FR')} kWh/an</li><li>Onduleur hybride possible</li><li>VE + PAC</li></ul></article></div></div></section>
+
+  <section class="section soft-section"><div class="container pac-grid"><div><span class="kicker">PAC + solaire</span><h2>Le duo cohérent en Loire-Atlantique.</h2><p>Le photovoltaïque produit pendant que la PAC chauffe en intersaison ou rafraîchit l’été. Une régulation simple peut prioriser l’eau chaude, la température de consigne puis la recharge du véhicule.</p><div class="flow-diagram"><span>☀️<small>Modules</small></span><b>→</b><span>⚡<small>Onduleur</small></span><b>→</b><span>🌡️<small>PAC</small></span><b>+</b><span>🔋<small>Stockage</small></span></div></div><img src="/images/guides/pac-solaire.webp" alt={`Pompe à chaleur alimentée par panneaux solaires à ${commune.name}`} loading="lazy" width="1400" height="933"/></div></section>
+
+  <section class="section"><div class="container"><div class="section-head"><span class="kicker">Questions locales</span><h2>FAQ panneaux solaires à {commune.name}</h2></div><div class="faq local-faq"><details open><summary>Le solaire fonctionne-t-il vraiment à {commune.name} malgré les jours gris ?</summary><p>Oui. Les modules utilisent le rayonnement diffus autant que le soleil direct. Le productible local indicatif de {m.yieldPerKwc} kWh/kWc/an permet à 6 kWc de produire autour de {m.sixKwc.toLocaleString('fr-FR')} kWh par an.</p></details><details><summary>Peut-on poser des panneaux sur une toiture ardoise ?</summary><p>Oui. La surimposition utilise des crochets et rails adaptés, sans transformer les modules en couverture. L’installateur doit documenter les fixations et sa décennale photovoltaïque.</p></details><details><summary>La pluie nettoie-t-elle les panneaux ?</summary><p>La pente et les pluies régulières évacuent une grande partie des poussières. Un contrôle visuel reste utile pour les feuilles, fientes et dépôts côtiers.</p></details><details><summary>Quelle puissance pour une maison avec pompe à chaleur ?</summary><p>6 à 9 kWc sont souvent comparés, mais seule la courbe de consommation, la toiture et le projet de véhicule électrique permettent de trancher.</p></details><details><summary>Quelles démarches à la mairie de {commune.name} ?</summary><p>Une déclaration préalable est généralement requise. Les secteurs protégés peuvent nécessiter un avis spécifique. Le professionnel doit l’intégrer au planning.</p></details></div></div></section>
+
+  <section class="section nearby-section"><div class="container"><div class="section-head"><span class="kicker">Autour de {commune.name}</span><h2>Nos études solaires dans les communes voisines</h2></div><div class="nearby-grid">{nearby.map((city) => <a href={`/panneau-solaire-${city.slug}/`}><span>📍 {city.postalCodes[0]}</span><strong>Panneaux solaires à {city.name}</strong><small>Production, prix et devis RGE →</small></a>)}</div><div class="guide-links"><a href="/guides/solaire-fonctionne-t-il-a-nantes/">Le solaire marche-t-il à Nantes ?</a><a href="/guides/panneaux-solaires-toiture-ardoise-nantes/">Panneaux sur toiture ardoise</a><a href="/aides-panneau-solaire-44/">Aides solaires 2026 dans le 44</a></div></div></section>
+
+  <section id="devis" class="section lead-section"><div class="container"><LeadForm city={commune.name}/></div></section>
+</BaseLayout>

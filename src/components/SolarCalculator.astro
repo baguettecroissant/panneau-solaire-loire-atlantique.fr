@@ -1,0 +1,58 @@
+---
+const { city = 'Nantes', yieldPerKwc = 1100, local = false } = Astro.props;
+---
+<div class="solar-tools" data-solar-tools data-yield={yieldPerKwc}>
+  <div class="tool-tabs" role="tablist" aria-label="Outils de simulation solaire">
+    <button class="tool-tab active" type="button" role="tab" aria-selected="true" data-tool-tab="production">☀️ Production</button>
+    <button class="tool-tab" type="button" role="tab" aria-selected="false" data-tool-tab="roi">📈 Rentabilité</button>
+    <button class="tool-tab" type="button" role="tab" aria-selected="false" data-tool-tab="pac">🌡️ PAC + solaire</button>
+    <button class="tool-tab" type="button" role="tab" aria-selected="false" data-tool-tab="map">🗺️ Carte 44</button>
+  </div>
+
+  <section class="tool-panel active" data-tool-panel="production">
+    <div class="tool-copy">
+      <span class="kicker">Simulateur « ça marche à Nantes ? »</span>
+      <h3>Estimez votre production à {city}</h3>
+      <p>Une estimation pédagogique fondée sur le productible local. Une étude de toiture reste nécessaire pour intégrer les ombres et la pente.</p>
+      <div class="range-field"><label for={`surface-${city}`}>Surface de toiture utile <strong data-surface-value>40 m²</strong></label><input id={`surface-${city}`} data-surface type="range" min="15" max="120" value="40" step="5" /></div>
+      <div class="range-field"><label for={`orientation-${city}`}>Orientation</label><select id={`orientation-${city}`} data-orientation><option value="1">Sud</option><option value="0.92">Sud-Est / Sud-Ouest</option><option value="0.82">Est / Ouest</option><option value="0.68">Nord-Est / Nord-Ouest</option></select></div>
+    </div>
+    <div class="tool-result">
+      <div class="result-icon">☀️</div><span>Production annuelle estimée</span><strong data-production>6 600 kWh</strong><small data-power>Installation ≈ 6,0 kWc</small>
+      <div class="mini-bars" aria-hidden="true"><i style="height:35%"></i><i style="height:48%"></i><i style="height:67%"></i><i style="height:82%"></i><i style="height:94%"></i><i style="height:100%"></i><i style="height:96%"></i><i style="height:86%"></i><i style="height:70%"></i><i style="height:54%"></i><i style="height:38%"></i><i style="height:30%"></i></div>
+    </div>
+  </section>
+
+  <section class="tool-panel" data-tool-panel="roi">
+    <div class="tool-copy"><span class="kicker">Calculateur ROI</span><h3>Quand l’installation est-elle amortie ?</h3><p>Faites varier l’investissement et votre taux d’autoconsommation. Le calcul utilise 0,25 €/kWh évité et une valorisation prudente du surplus.</p><div class="range-field"><label>Investissement net <strong data-invest-value>14 500 €</strong></label><input data-invest type="range" min="7500" max="30000" value="14500" step="500" /></div><div class="range-field"><label>Autoconsommation <strong data-self-value>60 %</strong></label><input data-self type="range" min="30" max="90" value="60" step="5" /></div></div>
+    <div class="tool-result amber"><div class="result-icon">📈</div><span>Retour sur investissement</span><strong data-roi>10,2 ans</strong><small data-benefit>≈ 22 300 € de valeur cumulée sur 25 ans</small><div class="roi-line"><i></i><b data-roi-marker></b></div></div>
+  </section>
+
+  <section class="tool-panel" data-tool-panel="pac">
+    <div class="tool-copy"><span class="kicker">Combo PAC + solaire</span><h3>Produire pour chauffer et rafraîchir</h3><p>La pompe à chaleur déplace une partie de sa consommation sur les heures lumineuses. C’est particulièrement efficace au printemps et en été.</p><div class="range-field"><label>Consommation annuelle de la PAC <strong data-pac-value>4 500 kWh</strong></label><input data-pac type="range" min="2000" max="10000" value="4500" step="500" /></div></div>
+    <div class="tool-result blue"><div class="energy-flow"><span>☀️<small>Panneaux</small></span><b>→</b><span>⚡<small>Maison</small></span><b>→</b><span>🌡️<small>PAC</small></span></div><span>Part de PAC couverte</span><strong data-pac-cover>57 %</strong><small>avec pilotage de journée et 6 kWc indicatifs</small></div>
+  </section>
+
+  <section class="tool-panel" data-tool-panel="map">
+    <div class="tool-copy"><span class="kicker">Carte ensoleillement 44</span><h3>Un productible solide du littoral au vignoble</h3><p>Le littoral bénéficie souvent d’éclaircies plus franches, tandis que Nantes, le vignoble et le nord du département restent parfaitement exploitables.</p><div class="map-legend"><span><i class="l1"></i> 1 050–1 080 kWh/kWc</span><span><i class="l2"></i> 1 080–1 120</span><span><i class="l3"></i> 1 120–1 160</span></div></div>
+    <div class="solar-map" aria-label="Carte solaire schématique de la Loire-Atlantique"><svg viewBox="0 0 520 360" role="img"><path class="dept" d="M73 170L91 83l69-45 98 16 48 55 98-8 60 67-31 67-80 18-55 66-109-19-47-58-74-5-24-67z"/><circle class="map-dot coast" cx="87" cy="183" r="13"/><text x="43" y="215">Saint-Nazaire</text><circle class="map-dot city" cx="275" cy="188" r="16"/><text x="252" y="221">Nantes</text><circle class="map-dot inland" cx="380" cy="116" r="10"/><text x="352" y="91">Ancenis</text><circle class="map-dot coast" cx="102" cy="282" r="9"/><text x="65" y="315">Pornic</text><circle class="map-dot inland" cx="334" cy="282" r="9"/><text x="308" y="314">Clisson</text></svg></div>
+  </section>
+  {local && <p class="tool-disclaimer">Résultats indicatifs pour {city}. Une visite technique RGE confirme le dimensionnement.</p>}
+</div>
+
+<script>
+  document.querySelectorAll('[data-solar-tools]').forEach((root) => {
+    const yieldValue = Number(root.getAttribute('data-yield') || 1100);
+    root.querySelectorAll('[data-tool-tab]').forEach((button) => button.addEventListener('click', () => {
+      const id = button.getAttribute('data-tool-tab');
+      root.querySelectorAll('[data-tool-tab]').forEach((b) => { const on = b === button; b.classList.toggle('active', on); b.setAttribute('aria-selected', String(on)); });
+      root.querySelectorAll('[data-tool-panel]').forEach((panel) => panel.classList.toggle('active', panel.getAttribute('data-tool-panel') === id));
+    }));
+    const surface = root.querySelector('[data-surface]'); const orientation = root.querySelector('[data-orientation]');
+    const updateProduction = () => { const s = Number(surface?.value || 40); const o = Number(orientation?.value || 1); const power = s / 6.5; const production = Math.round(power * yieldValue * o / 50) * 50; root.querySelector('[data-surface-value]').textContent = `${s} m²`; root.querySelector('[data-production]').textContent = `${production.toLocaleString('fr-FR')} kWh`; root.querySelector('[data-power]').textContent = `Installation ≈ ${power.toFixed(1).replace('.', ',')} kWc`; updateRoi(production); };
+    const invest = root.querySelector('[data-invest]'); const self = root.querySelector('[data-self]');
+    const updateRoi = (production) => { const p = production || 6600; const inv = Number(invest?.value || 14500); const auto = Number(self?.value || 60); const annual = p * (auto / 100) * .25 + p * (1 - auto / 100) * .10; const roi = inv / annual; root.querySelector('[data-invest-value]').textContent = `${inv.toLocaleString('fr-FR')} €`; root.querySelector('[data-self-value]').textContent = `${auto} %`; root.querySelector('[data-roi]').textContent = `${roi.toFixed(1).replace('.', ',')} ans`; root.querySelector('[data-benefit]').textContent = `≈ ${Math.max(0, Math.round((annual * 25 - inv) / 100) * 100).toLocaleString('fr-FR')} € de valeur cumulée sur 25 ans`; root.querySelector('[data-roi-marker]').style.left = `${Math.min(92, roi / 20 * 100)}%`; };
+    const pac = root.querySelector('[data-pac]'); const updatePac = () => { const value = Number(pac?.value || 4500); root.querySelector('[data-pac-value]').textContent = `${value.toLocaleString('fr-FR')} kWh`; root.querySelector('[data-pac-cover]').textContent = `${Math.min(78, Math.round(2550 / value * 100))} %`; };
+    surface?.addEventListener('input', updateProduction); orientation?.addEventListener('change', updateProduction); invest?.addEventListener('input', () => updateRoi()); self?.addEventListener('input', () => updateRoi()); pac?.addEventListener('input', updatePac); updateProduction(); updatePac();
+  });
+</script>

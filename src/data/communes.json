@@ -1,0 +1,716 @@
+[
+  {
+    "name": "Nantes",
+    "slug": "nantes",
+    "postalCodes": [
+      "44000",
+      "44100",
+      "44200",
+      "44300"
+    ],
+    "population": 323204,
+    "profile": "maison nantaise tuffeau/ardoise, extension contemporaine, télétravail"
+  },
+  {
+    "name": "Saint-Nazaire",
+    "slug": "saint-nazaire",
+    "postalCodes": [
+      "44600"
+    ],
+    "population": 72057,
+    "profile": "maison littorale exposée au vent de l’estuaire"
+  },
+  {
+    "name": "Rezé",
+    "slug": "reze",
+    "postalCodes": [
+      "44400"
+    ],
+    "population": 42577,
+    "profile": "pavillon urbain proche Loire"
+  },
+  {
+    "name": "Saint-Herblain",
+    "slug": "saint-herblain",
+    "postalCodes": [
+      "44800"
+    ],
+    "population": 49307,
+    "profile": "maison familiale de métropole"
+  },
+  {
+    "name": "Orvault",
+    "slug": "orvault",
+    "postalCodes": [
+      "44700"
+    ],
+    "population": 27194,
+    "profile": "pavillon verdoyant avec usages électriques réguliers"
+  },
+  {
+    "name": "Vertou",
+    "slug": "vertou",
+    "postalCodes": [
+      "44120"
+    ],
+    "population": 26391,
+    "profile": "maison avec jardin et toiture bien orientée"
+  },
+  {
+    "name": "Couëron",
+    "slug": "coueron",
+    "postalCodes": [
+      "44220"
+    ],
+    "population": 22419,
+    "profile": "maison de bord de Loire"
+  },
+  {
+    "name": "Carquefou",
+    "slug": "carquefou",
+    "postalCodes": [
+      "44470"
+    ],
+    "population": 20365,
+    "profile": "maison récente et profil data-savvy"
+  },
+  {
+    "name": "La Chapelle-sur-Erdre",
+    "slug": "la-chapelle-sur-erdre",
+    "postalCodes": [
+      "44240"
+    ],
+    "population": 20322,
+    "profile": "maison familiale près de l’Erdre"
+  },
+  {
+    "name": "Bouguenais",
+    "slug": "bouguenais",
+    "postalCodes": [
+      "44340"
+    ],
+    "population": 20337,
+    "profile": "pavillon sud-Loire"
+  },
+  {
+    "name": "Saint-Sébastien-sur-Loire",
+    "slug": "saint-sebastien-sur-loire",
+    "postalCodes": [
+      "44230"
+    ],
+    "population": 27691,
+    "profile": "maison de métropole rive sud"
+  },
+  {
+    "name": "Pornic",
+    "slug": "pornic",
+    "postalCodes": [
+      "44210"
+    ],
+    "population": 17881,
+    "profile": "maison littorale ou résidence secondaire"
+  },
+  {
+    "name": "Guérande",
+    "slug": "guerande",
+    "postalCodes": [
+      "44350"
+    ],
+    "population": 16449,
+    "profile": "maison de caractère avec contraintes patrimoniales"
+  },
+  {
+    "name": "La Baule-Escoublac",
+    "slug": "la-baule-escoublac",
+    "postalCodes": [
+      "44500"
+    ],
+    "population": 16092,
+    "profile": "villa balnéaire ou résidence secondaire"
+  },
+  {
+    "name": "Sainte-Luce-sur-Loire",
+    "slug": "sainte-luce-sur-loire",
+    "postalCodes": [
+      "44980"
+    ],
+    "population": 15836,
+    "profile": "pavillon périurbain"
+  },
+  {
+    "name": "Treillières",
+    "slug": "treillieres",
+    "postalCodes": [
+      "44119"
+    ],
+    "population": 10139,
+    "profile": "maison récente de couronne nantaise"
+  },
+  {
+    "name": "Pornichet",
+    "slug": "pornichet",
+    "postalCodes": [
+      "44380"
+    ],
+    "population": 11763,
+    "profile": "maison littorale"
+  },
+  {
+    "name": "Châteaubriant",
+    "slug": "chateaubriant",
+    "postalCodes": [
+      "44110"
+    ],
+    "population": 11973,
+    "profile": "maison de centre-ville ou pavillon"
+  },
+  {
+    "name": "Ancenis-Saint-Géréon",
+    "slug": "ancenis-saint-gereon",
+    "postalCodes": [
+      "44150"
+    ],
+    "population": 11128,
+    "profile": "maison en bord de Loire"
+  },
+  {
+    "name": "Saint-Brevin-les-Pins",
+    "slug": "saint-brevin-les-pins",
+    "postalCodes": [
+      "44250"
+    ],
+    "population": 14858,
+    "profile": "maison littorale avec pins et embruns"
+  },
+  {
+    "name": "Clisson",
+    "slug": "clisson",
+    "postalCodes": [
+      "44190"
+    ],
+    "population": 7470,
+    "profile": "maison de caractère ou pavillon viticole"
+  },
+  {
+    "name": "Vallet",
+    "slug": "vallet",
+    "postalCodes": [
+      "44330"
+    ],
+    "population": 9728,
+    "profile": "maison du vignoble nantais"
+  },
+  {
+    "name": "Nort-sur-Erdre",
+    "slug": "nort-sur-erdre",
+    "postalCodes": [
+      "44390"
+    ],
+    "population": 9122,
+    "profile": "maison proche canal et Erdre"
+  },
+  {
+    "name": "Blain",
+    "slug": "blain",
+    "postalCodes": [
+      "44130"
+    ],
+    "population": 10149,
+    "profile": "maison ou longère avec toiture ardoise"
+  },
+  {
+    "name": "Pontchâteau",
+    "slug": "pontchateau",
+    "postalCodes": [
+      "44160"
+    ],
+    "population": 11028,
+    "profile": "pavillon familial du bassin nazairien"
+  },
+  {
+    "name": "Savenay",
+    "slug": "savenay",
+    "postalCodes": [
+      "44260"
+    ],
+    "population": 9300,
+    "profile": "maison entre Nantes et Saint-Nazaire"
+  },
+  {
+    "name": "Le Loroux-Bottereau",
+    "slug": "le-loroux-bottereau",
+    "postalCodes": [
+      "44430"
+    ],
+    "population": 8730,
+    "profile": "maison du vignoble"
+  },
+  {
+    "name": "Saint-Philbert-de-Grand-Lieu",
+    "slug": "saint-philbert-de-grand-lieu",
+    "postalCodes": [
+      "44310"
+    ],
+    "population": 9252,
+    "profile": "maison proche lac de Grand-Lieu"
+  },
+  {
+    "name": "Saint-Julien-de-Concelles",
+    "slug": "saint-julien-de-concelles",
+    "postalCodes": [
+      "44450"
+    ],
+    "population": 7630,
+    "profile": "maison maraîchère ou pavillon"
+  },
+  {
+    "name": "La Montagne",
+    "slug": "la-montagne",
+    "postalCodes": [
+      "44620"
+    ],
+    "population": 6308,
+    "profile": "pavillon de première couronne"
+  },
+  {
+    "name": "Vigneux-de-Bretagne",
+    "slug": "vigneux-de-bretagne",
+    "postalCodes": [
+      "44360"
+    ],
+    "population": 6341,
+    "profile": "maison familiale avec terrain"
+  },
+  {
+    "name": "Sucé-sur-Erdre",
+    "slug": "suce-sur-erdre",
+    "postalCodes": [
+      "44240"
+    ],
+    "population": 7615,
+    "profile": "maison près de l’Erdre"
+  },
+  {
+    "name": "Haute-Goulaine",
+    "slug": "haute-goulaine",
+    "postalCodes": [
+      "44115"
+    ],
+    "population": 5941,
+    "profile": "maison du vignoble nantais"
+  },
+  {
+    "name": "Divatte-sur-Loire",
+    "slug": "divatte-sur-loire",
+    "postalCodes": [
+      "44450"
+    ],
+    "population": 7115,
+    "profile": "maison ligérienne"
+  },
+  {
+    "name": "La Haye-Fouassière",
+    "slug": "la-haye-fouassiere",
+    "postalCodes": [
+      "44690"
+    ],
+    "population": 4697,
+    "profile": "maison du vignoble"
+  },
+  {
+    "name": "Aigrefeuille-sur-Maine",
+    "slug": "aigrefeuille-sur-maine",
+    "postalCodes": [
+      "44140"
+    ],
+    "population": 4155,
+    "profile": "pavillon au sud de Nantes"
+  },
+  {
+    "name": "Geneston",
+    "slug": "geneston",
+    "postalCodes": [
+      "44140"
+    ],
+    "population": 3773,
+    "profile": "maison récente"
+  },
+  {
+    "name": "Le Bignon",
+    "slug": "le-bignon",
+    "postalCodes": [
+      "44140"
+    ],
+    "population": 3901,
+    "profile": "maison familiale"
+  },
+  {
+    "name": "Vieillevigne",
+    "slug": "vieillevigne",
+    "postalCodes": [
+      "44116"
+    ],
+    "population": 4091,
+    "profile": "maison avec toiture importante"
+  },
+  {
+    "name": "Legé",
+    "slug": "lege",
+    "postalCodes": [
+      "44650"
+    ],
+    "population": 4570,
+    "profile": "maison rurale du sud Loire"
+  },
+  {
+    "name": "Saint-Aignan-Grandlieu",
+    "slug": "saint-aignan-grandlieu",
+    "postalCodes": [
+      "44860"
+    ],
+    "population": 3996,
+    "profile": "maison proche lac"
+  },
+  {
+    "name": "La Chevrolière",
+    "slug": "la-chevroliere",
+    "postalCodes": [
+      "44118"
+    ],
+    "population": 6124,
+    "profile": "pavillon sud-Loire"
+  },
+  {
+    "name": "Bouaye",
+    "slug": "bouaye",
+    "postalCodes": [
+      "44830"
+    ],
+    "population": 8212,
+    "profile": "maison familiale proche Grand-Lieu"
+  },
+  {
+    "name": "Sainte-Pazanne",
+    "slug": "sainte-pazanne",
+    "postalCodes": [
+      "44680"
+    ],
+    "population": 6924,
+    "profile": "maison périurbaine"
+  },
+  {
+    "name": "Chaumes-en-Retz",
+    "slug": "chaumes-en-retz",
+    "postalCodes": [
+      "44320"
+    ],
+    "population": 7150,
+    "profile": "maison de pays de Retz"
+  },
+  {
+    "name": "Saint-Michel-Chef-Chef",
+    "slug": "saint-michel-chef-chef",
+    "postalCodes": [
+      "44730"
+    ],
+    "population": 5220,
+    "profile": "maison côtière"
+  },
+  {
+    "name": "La Plaine-sur-Mer",
+    "slug": "la-plaine-sur-mer",
+    "postalCodes": [
+      "44770"
+    ],
+    "population": 4350,
+    "profile": "maison littorale"
+  },
+  {
+    "name": "Donges",
+    "slug": "donges",
+    "postalCodes": [
+      "44480"
+    ],
+    "population": 8200,
+    "profile": "maison du bassin nazairien"
+  },
+  {
+    "name": "Montoir-de-Bretagne",
+    "slug": "montoir-de-bretagne",
+    "postalCodes": [
+      "44550"
+    ],
+    "population": 7200,
+    "profile": "pavillon proche estuaire"
+  },
+  {
+    "name": "Herbignac",
+    "slug": "herbignac",
+    "postalCodes": [
+      "44410"
+    ],
+    "population": 7200,
+    "profile": "maison de presqu’île"
+  },
+  {
+    "name": "La Turballe",
+    "slug": "la-turballe",
+    "postalCodes": [
+      "44420"
+    ],
+    "population": 4700,
+    "profile": "maison littorale"
+  },
+  {
+    "name": "Le Croisic",
+    "slug": "le-croisic",
+    "postalCodes": [
+      "44490"
+    ],
+    "population": 4000,
+    "profile": "maison patrimoniale côtière"
+  },
+  {
+    "name": "Le Pouliguen",
+    "slug": "le-pouliguen",
+    "postalCodes": [
+      "44510"
+    ],
+    "population": 4200,
+    "profile": "résidence balnéaire"
+  },
+  {
+    "name": "Missillac",
+    "slug": "missillac",
+    "postalCodes": [
+      "44780"
+    ],
+    "population": 5300,
+    "profile": "maison avec grande toiture"
+  },
+  {
+    "name": "Machecoul-Saint-Même",
+    "slug": "machecoul-saint-meme",
+    "postalCodes": [
+      "44270"
+    ],
+    "population": 7766,
+    "profile": "maison individuelle du pays de Retz"
+  },
+  {
+    "name": "Héric",
+    "slug": "heric",
+    "postalCodes": [
+      "44810"
+    ],
+    "population": 6417,
+    "profile": "maison périurbaine avec surface de toiture"
+  },
+  {
+    "name": "Basse-Goulaine",
+    "slug": "basse-goulaine",
+    "postalCodes": [
+      "44115"
+    ],
+    "population": 9311,
+    "profile": "pavillon résidentiel"
+  },
+  {
+    "name": "Thouaré-sur-Loire",
+    "slug": "thouare-sur-loire",
+    "postalCodes": [
+      "44470"
+    ],
+    "population": 10514,
+    "profile": "maison de bord de Loire"
+  },
+  {
+    "name": "Sautron",
+    "slug": "sautron",
+    "postalCodes": [
+      "44880"
+    ],
+    "population": 8804,
+    "profile": "maison familiale sur secteur résidentiel"
+  },
+  {
+    "name": "Le Pellerin",
+    "slug": "le-pellerin",
+    "postalCodes": [
+      "44640"
+    ],
+    "population": 5261,
+    "profile": "maison de bord de Loire"
+  },
+  {
+    "name": "Indre",
+    "slug": "indre",
+    "postalCodes": [
+      "44610"
+    ],
+    "population": 4149,
+    "profile": "maison urbaine en rive de Loire"
+  },
+  {
+    "name": "Brains",
+    "slug": "brains",
+    "postalCodes": [
+      "44830"
+    ],
+    "population": 2925,
+    "profile": "maison rurale proche métropole"
+  },
+  {
+    "name": "Grandchamps-des-Fontaines",
+    "slug": "grandchamps-des-fontaines",
+    "postalCodes": [
+      "44119"
+    ],
+    "population": 6651,
+    "profile": "pavillon résidentiel"
+  },
+  {
+    "name": "Saint-Mars-du-Désert",
+    "slug": "saint-mars-du-desert",
+    "postalCodes": [
+      "44850"
+    ],
+    "population": 5143,
+    "profile": "maison périurbaine"
+  },
+  {
+    "name": "Mauves-sur-Loire",
+    "slug": "mauves-sur-loire",
+    "postalCodes": [
+      "44470"
+    ],
+    "population": 3379,
+    "profile": "maison en coteau de Loire"
+  },
+  {
+    "name": "Gorges",
+    "slug": "gorges",
+    "postalCodes": [
+      "44190"
+    ],
+    "population": 4921,
+    "profile": "maison proche Clisson"
+  },
+  {
+    "name": "Montbert",
+    "slug": "montbert",
+    "postalCodes": [
+      "44140"
+    ],
+    "population": 3357,
+    "profile": "pavillon rural"
+  },
+  {
+    "name": "Corcoué-sur-Logne",
+    "slug": "corcoue-sur-logne",
+    "postalCodes": [
+      "44650"
+    ],
+    "population": 3052,
+    "profile": "maison de campagne"
+  },
+  {
+    "name": "Port-Saint-Père",
+    "slug": "port-saint-pere",
+    "postalCodes": [
+      "44710"
+    ],
+    "population": 3029,
+    "profile": "maison de bourg"
+  },
+  {
+    "name": "Rouans",
+    "slug": "rouans",
+    "postalCodes": [
+      "44640"
+    ],
+    "population": 3149,
+    "profile": "maison du pays de Retz"
+  },
+  {
+    "name": "Villeneuve-en-Retz",
+    "slug": "villeneuve-en-retz",
+    "postalCodes": [
+      "44580"
+    ],
+    "population": 5021,
+    "profile": "maison proche littoral"
+  },
+  {
+    "name": "Préfailles",
+    "slug": "prefailles",
+    "postalCodes": [
+      "44770"
+    ],
+    "population": 2440,
+    "profile": "résidence littorale"
+  },
+  {
+    "name": "Saint-Père-en-Retz",
+    "slug": "saint-pere-en-retz",
+    "postalCodes": [
+      "44320"
+    ],
+    "population": 4650,
+    "profile": "maison du pays de Retz"
+  },
+  {
+    "name": "Paimbœuf",
+    "slug": "paimboeuf",
+    "postalCodes": [
+      "44560"
+    ],
+    "population": 3100,
+    "profile": "maison en estuaire"
+  },
+  {
+    "name": "Trignac",
+    "slug": "trignac",
+    "postalCodes": [
+      "44570"
+    ],
+    "population": 8200,
+    "profile": "maison proche Saint-Nazaire"
+  },
+  {
+    "name": "Saint-Lyphard",
+    "slug": "saint-lyphard",
+    "postalCodes": [
+      "44410"
+    ],
+    "population": 4900,
+    "profile": "maison de Brière"
+  },
+  {
+    "name": "Batz-sur-Mer",
+    "slug": "batz-sur-mer",
+    "postalCodes": [
+      "44740"
+    ],
+    "population": 3000,
+    "profile": "maison littorale"
+  },
+  {
+    "name": "Mesquer",
+    "slug": "mesquer",
+    "postalCodes": [
+      "44420"
+    ],
+    "population": 2100,
+    "profile": "maison de côte sauvage"
+  },
+  {
+    "name": "Piriac-sur-Mer",
+    "slug": "piriac-sur-mer",
+    "postalCodes": [
+      "44420"
+    ],
+    "population": 2400,
+    "profile": "maison littorale de caractère"
+  }
+]

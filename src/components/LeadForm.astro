@@ -1,4 +1,67 @@
 ---
 const { city = 'Nantes', compact = false } = Astro.props;
+const formId = `lead-${city.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${compact ? 'compact' : 'full'}`;
 ---
-<form class="form" method="post" action="/api/lead"><span class="eyebrow">Simulation gratuite</span><h2>{compact ? 'Vérifier ma rentabilité solaire' : `Devis panneaux solaires à ${city}`}</h2><p>Réponse indicative sous 24h par un expert RGE du 44.</p><div class="two"><label>Prénom<input name="prenom" required /></label><label>Nom<input name="nom" required /></label></div><div class="two"><label>Email<input type="email" name="email" required /></label><label>Téléphone<input name="tel" required /></label></div><label>Adresse<input name="adresse" required /></label><div class="two"><label>Code postal<input name="cp" pattern="44[0-9]{3}" required /></label><label>Ville<input name="ville" value={city} required /></label></div><div class="two"><label>Projet<select name="projectType"><option>3 kWc autoconsommation</option><option>6 kWc maison familiale</option><option>9 kWc + PAC/VE</option><option>Batterie LFP</option></select></label><label>Délai<select name="delais"><option value="1">Dès que possible</option><option value="2">Dans les 3 mois</option><option value="3">Plus tard</option></select></label></div><label><input type="checkbox" name="consent" required /> J’accepte d’être recontacté pour mon projet solaire.</label><input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px"/><button class="btn" type="submit">Vérifier ma rentabilité solaire</button></form>
+<div class="lead-shell" id={formId} data-lead-form>
+  <div class="lead-aside">
+    <span class="kicker kicker-light">Étude solaire gratuite</span>
+    <h2>{compact ? 'Votre projet mérite mieux qu’un devis standard.' : `Étudions votre toiture à ${city}`}</h2>
+    <p>En 2 minutes, précisez votre logement et vos usages. Votre demande est vérifiée avant toute mise en relation.</p>
+    <div class="lead-proof"><span>01</span><div><strong>Dimensionnement utile</strong><small>3, 6 ou 9 kWc selon vos consommations</small></div></div>
+    <div class="lead-proof"><span>02</span><div><strong>Installateur QualiPV RGE</strong><small>Assurance décennale et références contrôlées</small></div></div>
+    <div class="lead-proof"><span>03</span><div><strong>Sans engagement</strong><small>Vous restez libre de comparer les solutions</small></div></div>
+    <div class="lead-rating"><b>★★★★★</b><span>Étude locale · réponse sous 24–48h</span></div>
+  </div>
+
+  <form class="steps-form" novalidate>
+    <div class="form-top"><div><small>Votre étude personnalisée</small><strong data-step-label>Étape 1 sur 3 · Le logement</strong></div><span data-progress-text>33%</span></div>
+    <div class="progress-track"><i class="progress-bar" style="width:33%"></i></div>
+
+    <section class="form-step active" data-step="1">
+      <h3>Parlez-nous de votre maison</h3><p>Ces informations servent à proposer une puissance cohérente.</p>
+      <div class="choice-grid">
+        <label class="choice-card"><input type="radio" name="typeBien" value="1" checked/><span>🏡</span><strong>Maison individuelle</strong><small>Toiture privative</small></label>
+        <label class="choice-card"><input type="radio" name="typeBien" value="2"/><span>🏢</span><strong>Copropriété</strong><small>Accord collectif nécessaire</small></label>
+      </div>
+      <div class="field-grid"><label>Surface habitable<select name="surfaceMaison" required><option value="">Sélectionner</option><option>Moins de 80 m²</option><option>80 à 120 m²</option><option>120 à 180 m²</option><option>Plus de 180 m²</option></select></label><label>Type de toiture<select name="roofType" required><option value="">Sélectionner</option><option>Ardoise</option><option>Tuile</option><option>Toit plat</option><option>Autre / inconnu</option></select></label></div>
+      <div class="field-grid"><label>Facture électrique mensuelle<select name="consumption" required><option value="">Sélectionner</option><option>Moins de 100 €</option><option>100 à 180 €</option><option>180 à 280 €</option><option>Plus de 280 €</option></select></label><label>Équipements<select name="equipment"><option>Aucun gros équipement</option><option>Pompe à chaleur</option><option>Piscine</option><option>Véhicule électrique</option><option>PAC + véhicule électrique</option></select></label></div>
+      <button class="btn form-next" type="button" data-next>Continuer vers mon projet <span>→</span></button>
+    </section>
+
+    <section class="form-step" data-step="2">
+      <h3>Votre objectif énergétique</h3><p>Nous comparons production, autoconsommation et stockage.</p>
+      <div class="choice-grid three">
+        <label class="choice-card"><input type="radio" name="projectType" value="Autoconsommation" checked/><span>☀️</span><strong>Réduire ma facture</strong><small>Autoconsommation + surplus</small></label>
+        <label class="choice-card"><input type="radio" name="projectType" value="PAC + solaire"/><span>🌡️</span><strong>Alimenter ma PAC</strong><small>Chauffage et rafraîchissement</small></label>
+        <label class="choice-card"><input type="radio" name="projectType" value="Batterie LFP"/><span>🔋</span><strong>Gagner en autonomie</strong><small>Stockage 5 à 10 kWh</small></label>
+      </div>
+      <div class="field-grid"><label>Puissance envisagée<select name="powerNeed"><option>À déterminer</option><option>3 kWc</option><option>6 kWc</option><option>9 kWc</option><option>12 kWc et plus</option></select></label><label>Délai du projet<select name="delais" required><option value="1">Dès que possible</option><option value="2">Dans les 3 mois</option><option value="3">Dans 3 à 6 mois</option><option value="4">Je me renseigne</option></select></label></div>
+      <div class="form-actions"><button type="button" class="back-link" data-back>← Retour</button><button class="btn form-next" type="button" data-next>Voir mon éligibilité <span>→</span></button></div>
+    </section>
+
+    <section class="form-step" data-step="3">
+      <h3>Où se situe le projet ?</h3><p>Vos coordonnées restent sécurisées et servent uniquement au traitement de votre demande.</p>
+      <div class="field-grid"><label>Code postal<input name="cp" inputmode="numeric" pattern="44[0-9]{3}" maxlength="5" placeholder="44000" required/></label><label>Ville<input name="ville" value={city} required/></label></div>
+      <label>Adresse du projet<input name="adresse" autocomplete="street-address" placeholder="Ex. 12 rue des Érables" required/></label>
+      <div class="field-grid"><label>Prénom<input name="prenom" autocomplete="given-name" required/></label><label>Nom<input name="nom" autocomplete="family-name" required/></label></div>
+      <div class="field-grid"><label>Email<input type="email" name="email" autocomplete="email" placeholder="vous@exemple.fr" required/></label><label>Téléphone<input name="tel" autocomplete="tel" inputmode="tel" placeholder="06 12 34 56 78" required/></label></div>
+      <label class="consent-row"><input type="checkbox" name="consent" required/><span>J’accepte d’être recontacté au sujet de mon projet et la transmission de ma demande à un professionnel qualifié. <a href="/politique-confidentialite/">Politique de confidentialité</a>.</span></label>
+      <input type="text" name="website" tabindex="-1" autocomplete="off" class="honeypot" aria-hidden="true"/>
+      <div class="form-actions"><button type="button" class="back-link" data-back>← Retour</button><button class="btn form-submit" type="submit">Recevoir mon étude gratuite <span>→</span></button></div>
+      <p class="secure-note">🔒 Données chiffrées · Aucun démarchage hors projet · Service gratuit</p>
+    </section>
+    <div class="form-message" data-form-message role="status" aria-live="polite"></div>
+  </form>
+</div>
+
+<script>
+  document.querySelectorAll('[data-lead-form]').forEach((shell) => {
+    const form = shell.querySelector('form'); let step = 1;
+    const render = () => { shell.querySelectorAll('[data-step]').forEach((el) => el.classList.toggle('active', Number(el.getAttribute('data-step')) === step)); const pct = Math.round(step / 3 * 100); shell.querySelector('.progress-bar').style.width = `${pct}%`; shell.querySelector('[data-progress-text]').textContent = `${pct}%`; shell.querySelector('[data-step-label]').textContent = `Étape ${step} sur 3 · ${['Le logement','Le projet','Vos coordonnées'][step-1]}`; };
+    const validateStep = () => { const panel = shell.querySelector(`[data-step="${step}"]`); const fields = [...panel.querySelectorAll('input[required],select[required]')]; const invalid = fields.find((field) => !field.checkValidity()); if (invalid) { invalid.reportValidity(); return false; } return true; };
+    shell.querySelectorAll('[data-next]').forEach((button) => button.addEventListener('click', () => { if (validateStep()) { step = Math.min(3, step + 1); render(); shell.scrollIntoView({behavior:'smooth',block:'center'}); } }));
+    shell.querySelectorAll('[data-back]').forEach((button) => button.addEventListener('click', () => { step = Math.max(1, step - 1); render(); }));
+    form.addEventListener('submit', async (event) => { event.preventDefault(); if (!validateStep()) return; const submit = form.querySelector('[type="submit"]'); const message = shell.querySelector('[data-form-message]'); submit.disabled = true; submit.textContent = 'Envoi sécurisé…'; const data = Object.fromEntries(new FormData(form).entries()); data.consent = form.elements.consent.checked; data.submissionId = crypto.randomUUID(); data.pageUrl = window.location.href; try { const response = await fetch('/api/lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) }); const result = await response.json(); if (!response.ok || !result.success) throw new Error(result.message || 'Une erreur est survenue.'); message.className = 'form-message success'; message.innerHTML = '<strong>✓ Demande enregistrée</strong><span>Merci. Votre projet est transmis pour vérification et vous serez recontacté rapidement.</span>'; form.querySelectorAll('.form-step').forEach((panel) => panel.hidden = true); form.querySelector('.form-top').hidden = true; form.querySelector('.progress-track').hidden = true; } catch (error) { message.className = 'form-message error'; message.textContent = error.message || 'Service temporairement indisponible. Réessayez dans quelques instants.'; submit.disabled = false; submit.innerHTML = 'Recevoir mon étude gratuite <span>→</span>'; } });
+    render();
+  });
+</script>
