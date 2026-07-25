@@ -21,7 +21,7 @@ test('local page component exposes five local blocks and four interactive module
 
 test('lead form is multi-step and posts JSON to the secure endpoint', () => {
   const form = read('src/components/LeadForm.astro');
-  for (const marker of ['data-step="1"', 'data-step="2"', 'data-step="3"', "fetch('/api/lead'", 'submissionId', 'progress-bar']) {
+  for (const marker of ['data-step="1"', 'data-step="2"', 'data-step="3"', "fetch('/api/lead'", 'submissionId', 'progress-bar', 'Prévisualisation locale', 'response.status === 404']) {
     assert.ok(form.includes(marker), `lead form missing ${marker}`);
   }
 });

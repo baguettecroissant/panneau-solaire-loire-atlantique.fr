@@ -1,4 +1,65 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';import { communes } from '../data/site';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { communes } from '../data/site';
+
+const featured = communes.slice(0, 8);
+const directory = [...communes].sort((a, b) => a.name.localeCompare(b.name, 'fr'));
 ---
-<BaseLayout title="Communes Loire-Atlantique couvertes — Panneaux solaires 44" description="Toutes les communes de Loire-Atlantique couvertes pour panneaux solaires, installateur RGE, prix et devis local."><section class="section"><div class="container"><span class="eyebrow">Loire-Atlantique</span><h1>Communes couvertes dans le 44</h1><div class="city-grid">{communes.map(c=><a class="city" href={`/panneau-solaire-${c.slug}/`}><h3>{c.name}</h3><p>{c.postalCodes.join(', ')} · {c.population.toLocaleString('fr-FR')} habitants</p></a>)}</div></div></section></BaseLayout>
+<BaseLayout title="Communes couvertes en Loire-Atlantique — Solaire 44" description="Trouvez votre commune en Loire-Atlantique : potentiel solaire, prix indicatifs, contraintes de toiture et étude photovoltaïque locale.">
+  <section class="communes-hero">
+    <div class="container communes-hero-grid">
+      <div>
+        <span class="eyebrow">Couverture locale · Loire-Atlantique</span>
+        <h1>Votre projet solaire, <em>à l’échelle de votre commune.</em></h1>
+        <p>Chaque fiche relie le type d’habitat, les contraintes de toiture, le raccordement et les usages locaux. Choisissez votre ville pour commencer par une étude adaptée plutôt qu’un prix générique.</p>
+        <div class="communes-proof"><span><b>{communes.length}</b> communes documentées</span><span><b>3–9 kWc</b> repères de puissance</span><span><b>44</b> uniquement</span></div>
+      </div>
+      <aside class="communes-map-card" aria-label="Repère Loire-Atlantique">
+        <span>44</span><strong>Loire-Atlantique</strong><small>Du vignoble nantais à la côte Atlantique</small>
+        <div class="map-points"><i>Nantes</i><i>Saint-Nazaire</i><i>Clisson</i></div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section featured-cities">
+    <div class="container">
+      <div class="hub-heading"><div><span class="eyebrow">Démarrer ici</span><h2>Les communes les plus consultées</h2></div><a class="text-link" href="#annuaire">Voir l’annuaire complet ↓</a></div>
+      <div class="featured-city-grid">
+        {featured.map((city, index) => <a class:list={['featured-city-card', index === 0 && 'featured-city-main']} href={`/panneau-solaire-${city.slug}/`}>
+          <span>{city.postalCodes[0]} · {city.population.toLocaleString('fr-FR')} habitants</span>
+          <h3>{city.name}</h3><p>{city.profile}</p><b>Voir le potentiel solaire →</b>
+        </a>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="directory-section" id="annuaire">
+    <div class="container">
+      <div class="directory-top"><div><span class="eyebrow">Annuaire solaire 44</span><h2>Toutes les communes couvertes</h2><p>Recherchez une ville ou un code postal. Chaque résultat ouvre une page locale avec données de toiture, production et devis.</p></div><label class="city-search"><span>⌕</span><input type="search" placeholder="Ex. Vertou ou 44120" aria-label="Rechercher une commune" data-city-search /></label></div>
+      <p class="search-count" data-search-count>{communes.length} communes disponibles</p>
+      <div class="communes-directory">
+        {directory.map(city => <a class="directory-city" href={`/panneau-solaire-${city.slug}/`} data-city-card data-search={`${city.name} ${city.slug} ${city.postalCodes.join(' ')}`.toLowerCase()}><span>{city.postalCodes.join(' · ')}</span><strong>{city.name}</strong><small>{city.population.toLocaleString('fr-FR')} hab. <b>→</b></small></a>)}
+      </div>
+      <p class="no-city" hidden data-no-city>Aucune commune correspondante. Vérifiez l’orthographe ou explorez les villes voisines.</p>
+    </div>
+  </section>
+
+  <section class="section local-method"><div class="container method-grid"><div><span class="eyebrow">Une approche utile</span><h2>Pas de promesse uniforme pour toutes les toitures.</h2></div><p>Une maison urbaine à Nantes, une résidence littorale à Pornic et une toiture du vignoble près de Clisson ne se dimensionnent pas de la même façon. Nos fiches locales vous aident à poser les bonnes questions : ombrage, ardoise, urbanisme, autoconsommation et raccordement.</p><a class="btn" href="/devis/">Étudier ma toiture →</a></div></section>
+</BaseLayout>
+
+<script>
+  const input = document.querySelector('[data-city-search]');
+  const cards = [...document.querySelectorAll('[data-city-card]')];
+  const count = document.querySelector('[data-search-count]');
+  const empty = document.querySelector('[data-no-city]');
+  input?.addEventListener('input', () => {
+    const query = input.value.trim().toLowerCase(); let visible = 0;
+    cards.forEach((card) => { const match = !query || card.dataset.search.includes(query); card.hidden = !match; if (match) visible++; });
+    count.textContent = `${visible} commune${visible > 1 ? 's' : ''} ${query ? 'trouvée' : 'disponible'}${visible > 1 && query ? 's' : ''}`;
+    empty.hidden = visible !== 0;
+  });
+</script>
+
+<style>
+  .communes-hero{padding:110px 0 88px;background:linear-gradient(125deg,#ecfdf5 0%,#fff 55%,#fef3c7 100%);border-bottom:1px solid #d1fae5}.communes-hero-grid{display:grid;grid-template-columns:1.2fr .62fr;gap:75px;align-items:center}.communes-hero h1{max-width:840px}.communes-hero h1 em{color:var(--primary);font-style:normal}.communes-hero p{max-width:690px;color:var(--text-muted);font-size:1.13rem}.communes-proof{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}.communes-proof span{background:#fff;border:1px solid #a7f3d0;border-radius:999px;padding:9px 13px;font-size:.76rem}.communes-proof b{color:var(--primary);font-family:'IBM Plex Mono'}.communes-map-card{padding:38px;border-radius:30px;background:var(--primary-deep);color:#fff;box-shadow:var(--shadow);position:relative;overflow:hidden}.communes-map-card:after{content:'';position:absolute;width:250px;height:250px;right:-100px;bottom:-140px;border-radius:44% 56% 61% 39%;border:1px solid rgba(255,255,255,.2)}.communes-map-card>span{display:block;font:800 5.4rem 'IBM Plex Mono';color:#fcd34d;line-height:1}.communes-map-card strong,.communes-map-card small{display:block}.communes-map-card strong{font:800 1.35rem Onest;margin:15px 0 4px}.communes-map-card small{color:#d1fae5}.map-points{display:grid;gap:9px;margin-top:32px;position:relative;z-index:1}.map-points i{font-style:normal;background:rgba(255,255,255,.1);border-radius:10px;padding:8px 10px;font-size:.75rem}.hub-heading,.directory-top{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:35px}.hub-heading h2,.directory-top h2{margin-bottom:0}.featured-city-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.featured-city-card{padding:24px;border:1px solid #d1fae5;border-radius:19px;background:#fff;min-height:205px;display:flex;flex-direction:column;transition:.25s;box-shadow:var(--shadow-sm)}.featured-city-card:hover{transform:translateY(-5px);border-color:#34d399}.featured-city-card span{font:700 .66rem 'IBM Plex Mono';color:var(--primary)}.featured-city-card h3{margin:18px 0 8px}.featured-city-card p{font-size:.8rem;color:var(--text-muted);margin:0}.featured-city-card b{margin-top:auto;padding-top:18px;color:var(--primary);font-size:.76rem}.featured-city-main{background:linear-gradient(140deg,#064e3b,#047857);color:#fff;border-color:#047857}.featured-city-main span,.featured-city-main b{color:#fcd34d}.featured-city-main p{color:#d1fae5}.directory-section{background:#f8fafc;padding:95px 0}.directory-top{align-items:center}.directory-top p{max-width:650px;color:var(--text-muted);margin:8px 0 0}.city-search{display:flex;align-items:center;gap:10px;min-width:300px;background:#fff;border:1px solid #a7f3d0;border-radius:14px;padding:0 15px;box-shadow:var(--shadow-sm)}.city-search span{font-size:1.5rem;color:var(--primary)}.city-search input{border:0;outline:0;width:100%;padding:16px 0;background:transparent}.search-count{font:700 .75rem 'IBM Plex Mono';color:var(--primary);margin-bottom:18px}.communes-directory{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}.directory-city{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;padding:14px 15px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;transition:.2s}.directory-city:hover{border-color:#34d399;box-shadow:0 8px 22px rgba(6,78,59,.08)}.directory-city span{font:600 .6rem 'IBM Plex Mono';color:var(--primary)}.directory-city strong{font:700 .84rem Onest}.directory-city small{font-size:.63rem;color:var(--text-muted);white-space:nowrap}.directory-city b{color:var(--primary);font-size:.9rem}.no-city{padding:20px;background:#fff7ed;border-radius:12px;color:#9a3412}.local-method{padding:80px 0}.method-grid{display:grid;grid-template-columns:1fr 1fr auto;gap:50px;align-items:center}.method-grid h2{font-size:2.2rem}.method-grid p{color:var(--text-muted);margin:0}@media(max-width:900px){.communes-hero-grid,.method-grid{grid-template-columns:1fr;gap:35px}.featured-city-grid,.communes-directory{grid-template-columns:repeat(2,1fr)}.directory-top{align-items:start;flex-direction:column}.city-search{width:100%}}@media(max-width:560px){.communes-hero{padding:65px 0}.featured-city-grid,.communes-directory{grid-template-columns:1fr}.communes-map-card{padding:28px}.hub-heading{align-items:start;flex-direction:column}.directory-city{grid-template-columns:auto 1fr}.directory-city small{grid-column:2}.method-grid{gap:22px}}
+</style>
