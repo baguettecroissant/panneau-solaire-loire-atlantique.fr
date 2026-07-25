@@ -1,4 +1,6 @@
 VUD_API_KEY=
 SUPABASE_URL=
+SUPABASE_SERVICE_ROLE_KEY=
+# Fallback for a restricted test project only; production should use the server key above.
 SUPABASE_ANON_KEY=
 ALLOW_LOCAL_ORIGIN=true
